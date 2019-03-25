@@ -29,8 +29,8 @@ public class Branch implements Serializable {
 	private String adress;
 	@Column(name = "Name")
 	private String name;
-	/*@Column(name="Governorate")
-	private Governorate governorate;*/
+	@Column(name="Governorate")
+	private Governorate governorate;
 	private static final long serialVersionUID = 1L;
 	
 	

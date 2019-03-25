@@ -85,7 +85,7 @@ public class AccountServiceImpl implements IAccountServiceLocal, IAccountService
 		for (Client client: clients){
 			cin.add(client.getCin());
 		}
-		System.out.println("Out of ObservableList : ");
+		System.out.println("Out of getCinClients : ");
 		return cin;
 	}
 
