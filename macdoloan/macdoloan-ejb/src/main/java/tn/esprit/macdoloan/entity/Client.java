@@ -18,6 +18,37 @@ public class Client extends User implements Serializable {
 	private Set<Account> clientAccounts;
 	private static final long serialVersionUID = 1L;
 	
-	
+	@Column(name="Salary")
+	private float Salary;
+	@Column(name="Job")
+	private String Job;
+	@Column(name="Number of Children")
+	private int nbrchild;
+	@Column(name="Social Status")
+	private String status;
+	public float getSalary() {
+		return Salary;
+	}
+	public void setSalary(float salary) {
+		Salary = salary;
+	}
+	public String getJob() {
+		return Job;
+	}
+	public void setJob(String job) {
+		Job = job;
+	}
+	public int getNbrchild() {
+		return nbrchild;
+	}
+	public void setNbrchild(int nbrchild) {
+		this.nbrchild = nbrchild;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 }

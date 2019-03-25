@@ -1,6 +1,7 @@
 package tn.esprit.macdoloan.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,8 +20,6 @@ public abstract class User implements Serializable {
 	@ManyToOne
 	Branch branch ;
 	
-	
-
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,8 +39,18 @@ public abstract class User implements Serializable {
 	String login;
 	@Column(name = "Password")
 	String password;
-	@Column(name = "Cin")
+	@Column(name = "Cin",unique=true)
 	String cin;
+	@Column(name="BirthDate")
+	Date BirthDate;
+
+	public Date getBirthDate() {
+		return BirthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		BirthDate = birthDate;
+	}
 
 	public User() {
 
@@ -110,12 +119,19 @@ public abstract class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public Branch getBranch() {
+		return branch;
+	}
+
+	public void setBranch(Branch branch) {
+		this.branch = branch;
+	}
 
 	public String getCin() {
 		return cin;
 	}
 
-	public void setCin(String cin) {
+	public void setCin(String cin){
 		this.cin = cin;
 	}
 

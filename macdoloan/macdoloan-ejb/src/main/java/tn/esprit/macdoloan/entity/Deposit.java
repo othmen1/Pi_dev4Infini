@@ -1,6 +1,8 @@
 package tn.esprit.macdoloan.entity;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 
 /**
@@ -18,6 +20,29 @@ public class Deposit implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id")
 	private int Id;
+	@Column(name = "Amount")
+	private float Amount;
+	@Column(name = "Date")
+	@Temporal(TemporalType.DATE)
+	private Date WithdrawalDate;
+	public Account getAccount() {
+		return account;
+	}
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+	public int getId() {
+		return Id;
+	}
+	public void setId(int id) {
+		Id = id;
+	}
+	public float getAmount() {
+		return Amount;
+	}
+	public void setAmount(float amount) {
+		Amount = amount;
+	}
 	public Deposit() {
 		super();
 	}

@@ -17,5 +17,12 @@ public class Agent extends User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Column(name = "Post")
     private String post;
+	
+	public String getPost() {
+		return post;
+	}
+	public void setPost(String post) {
+		this.post = post;
+	}
 
 }
