@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 
 @Entity
-public class Client extends User implements Serializable {
+public class Client extends User implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="client")
 	private Set<Loan> clientLoans;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="client")
@@ -22,9 +22,9 @@ public class Client extends User implements Serializable {
 	private float Salary;
 	@Column(name="Job")
 	private String Job;
-	@Column(name="Number of Children")
+	@Column(name="ChildrenNumber")
 	private int nbrchild;
-	@Column(name="Social Status")
+	@Column(name="SocialStatus")
 	private String status;
 	public float getSalary() {
 		return Salary;

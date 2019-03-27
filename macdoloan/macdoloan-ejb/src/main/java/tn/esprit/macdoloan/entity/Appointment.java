@@ -24,6 +24,8 @@ public class Appointment implements Serializable {
 	private Agent agent;
 	@ManyToOne
 	private Client client;
+	@ManyToOne
+	private Branch branch;
 	private static final long serialVersionUID = 1L;
 
 	   
@@ -44,7 +46,7 @@ public class Appointment implements Serializable {
 	private String city;
 	@Column(name= "place" )
 	private String place;
-	@Column(name="Status")
+	@Column(name="status")
 	private boolean status;
 
 	public Client getClient() {
@@ -53,7 +55,7 @@ public class Appointment implements Serializable {
 	public void setClient(Client client) {
 		this.client = client;
 	}
-	/*public Branch getBranch() {
+	public Branch getBranch() {
 		return branch;
 	}
 	public void setBranch(Branch branch) {
@@ -94,7 +96,7 @@ public class Appointment implements Serializable {
 	}
 	public void setStatus(boolean status) {
 		this.status = status;
-	}*/
+	}
 
 	
    
@@ -112,5 +114,13 @@ public class Appointment implements Serializable {
 	public void setObject(String object) {
 		this.object = object;
 	}
+	public Agent getAgent() {
+		return agent;
+	}
+	public void setAgent(Agent agent) {
+		this.agent = agent;
+	}
+	
+	
    
 }

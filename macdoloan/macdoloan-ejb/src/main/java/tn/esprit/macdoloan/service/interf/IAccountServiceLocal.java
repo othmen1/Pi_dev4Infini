@@ -6,6 +6,7 @@ import javax.ejb.Local;
 
 import tn.esprit.macdoloan.entity.Account;
 import tn.esprit.macdoloan.entity.Client;
+import tn.esprit.macdoloan.entity.User;
 
 @Local
 public interface IAccountServiceLocal {
@@ -24,8 +25,16 @@ public interface IAccountServiceLocal {
 	
 	public List<Client> getAllClients();
 	
-	public List<Account> findAccountsByUserId(int id);
+	public List<User> getAllUsers();
+	
+	public List<Account> findAccountsByClient(Client cl);
 
 	void AffectAccountToClient(int IdAccount, int IdClient);
+	
+	public int addClient(Client client);
+	
+	public Client findClientByCin(String cin);
+	
+	public Client findClientById(int id);
 
 }

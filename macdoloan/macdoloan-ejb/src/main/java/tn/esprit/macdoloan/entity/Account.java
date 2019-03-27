@@ -16,6 +16,8 @@ import javax.persistence.*;
 public class Account implements Serializable {
 	@ManyToOne
 	Client client ;
+	@ManyToOne
+	Agent agent ;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="account")
 	private Set<Withdrawal> accountWithdrawals;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="account")
@@ -36,6 +38,15 @@ public class Account implements Serializable {
 	@Column(name = "OpeningDate")
 	@Temporal(TemporalType.DATE)
 	private Date OpeningDate;
+	@Column(name="Closed")
+	private boolean closed;
+	
+	public boolean isClosed() {
+		return closed;
+	}
+	public void setClosed(boolean closed) {
+		this.closed = closed;
+	}
 	public Client getClient() {
 		return client;
 	}
@@ -72,5 +83,13 @@ public class Account implements Serializable {
 	public void setOpeningDate(Date openingDate) {
 		OpeningDate = openingDate;
 	}
+	public Agent getAgent() {
+		return agent;
+	}
+	public void setAgent(Agent agent) {
+		this.agent = agent;
+	}
+	
+	
    
 }

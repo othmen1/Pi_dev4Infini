@@ -6,6 +6,7 @@ import javax.ejb.Remote;
 
 import tn.esprit.macdoloan.entity.Account;
 import tn.esprit.macdoloan.entity.Client;
+import tn.esprit.macdoloan.entity.User;
 
 @Remote
 public interface IAccountServiceRemote {
@@ -24,7 +25,15 @@ public interface IAccountServiceRemote {
 	
 	public List<Client> getAllClients();
 	
-	public List<Account> findAccountsByUserId(int id);
+	public List<User> getAllUsers();
 	
-	void AffectAccountToClient(int IdAccount, int IdClient);
+	public List<Account> findAccountsByClient(Client cl);
+	
+	public void AffectAccountToClient(int IdAccount, int IdClient);
+	
+	public int addClient(Client client);
+	
+	public Client findClientByCin(String cin);
+	
+	public Client findClientById(int id);
 }
