@@ -38,14 +38,14 @@ public class Account implements Serializable {
 	@Column(name = "OpeningDate")
 	@Temporal(TemporalType.DATE)
 	private Date OpeningDate;
-	@Column(name="Closed")
-	private boolean closed;
+	@Column(name="IsClosed")
+	private boolean isclosed;
 	
 	public boolean isClosed() {
-		return closed;
+		return isclosed;
 	}
 	public void setClosed(boolean closed) {
-		this.closed = closed;
+		this.isclosed = closed;
 	}
 	public Client getClient() {
 		return client;
