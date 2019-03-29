@@ -9,11 +9,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import tn.esprit.macdoloan.entity.Account;
+import tn.esprit.macdoloan.entity.Agent;
 import tn.esprit.macdoloan.entity.Client;
 import tn.esprit.macdoloan.entity.User;
 import tn.esprit.macdoloan.service.interf.IAccountServiceLocal;
 import tn.esprit.macdoloan.service.interf.IAccountServiceRemote;
-
 
 @Stateless
 public class AccountServiceImpl implements IAccountServiceLocal, IAccountServiceRemote {
@@ -23,6 +23,7 @@ public class AccountServiceImpl implements IAccountServiceLocal, IAccountService
 	@Override
 	public int addAccount(Account account) {
 		System.out.println("In addAccount : ");
+		account.setIsclosed(false);
 		em.persist(account);
 		System.out.println("Out of addAccount" + account.getId());
 		return account.getId();
@@ -50,16 +51,24 @@ public class AccountServiceImpl implements IAccountServiceLocal, IAccountService
 		// TODO Auto-generated method stub
 		System.out.println("In findAccountById : ");
 		Account account = em.find(Account.class, id);
+		if (account== null){ return null; }
+		else{
+		Account oppenedAccount=new Account();
+		if (account.isIsclosed()==false){ oppenedAccount=account;}
 		System.out.println("Out of findAccountById : ");
-		return account;
+		return oppenedAccount;}
 	}
 
 	@Override
 	public List<Account> findAllAccounts() {
 		System.out.println("In findAllUsers : ");
 		List<Account> accounts = em.createQuery("from Account", Account.class).getResultList();
+		List<Account> oppenedAccounts=new ArrayList<>();
+		for (int i=0;i<accounts.size();i++){
+			if (accounts.get(i).isIsclosed()==false){ oppenedAccounts.add(accounts.get(i));}
+		}
 		System.out.println("Out of findAllAccounts : ");
-		return accounts;
+		return oppenedAccounts;
 	}
 
 	@Override
@@ -67,8 +76,12 @@ public class AccountServiceImpl implements IAccountServiceLocal, IAccountService
 		System.out.println("Out of findAccountsByClientId : ");
 		TypedQuery<Account> accounts = em.createQuery("select a from Account a WHERE a.client=:cl", Account.class);
 		accounts.setParameter("cl", cl);
+		List<Account> oppenedAccounts=new ArrayList<>();
+		for (int i=0;i<accounts.getResultList().size();i++){
+			if (accounts.getResultList().get(i).isIsclosed()==false){ oppenedAccounts.add(accounts.getResultList().get(i));}
+		}
 		System.out.println("Out of findAccountsByClientId : ");
-		return accounts.getResultList();
+		return oppenedAccounts;
 
 	}
 
@@ -77,6 +90,7 @@ public class AccountServiceImpl implements IAccountServiceLocal, IAccountService
 		// TODO Auto-generated method stub
 		Client ClientManagedEntity = em.find(Client.class, IdClient);
 		Account AccountManagedEntity = em.find(Account.class, IdAccount);
+		System.out.println("out of AffectAccountToClient: Account: "+ IdAccount+" Client: "+IdClient);
 		AccountManagedEntity.setClient(ClientManagedEntity);
 		
 	}
@@ -126,6 +140,25 @@ public class AccountServiceImpl implements IAccountServiceLocal, IAccountService
 	public Client findClientById(int id) {
 		Client client = em.find(Client.class, id);
 		return client;
+	}
+
+	@Override
+	public void AffectAgentToOppenAccount(int IdAccount, int IdAgent) {
+		Agent AgentManagedEntity = em.find(Agent.class, IdAgent);
+		Account AccountManagedEntity = em.find(Account.class, IdAccount);
+		System.out.println("out of AffectAgentToOppenAccount: Account: "+ IdAccount+" Agent: "+IdAgent);
+		AccountManagedEntity.setAgentOppenAccount(AgentManagedEntity);
+		
+	}
+
+	@Override
+	public void AffectAgentToCloseAccount(int IdAccount, int IdAgent) {
+		Agent AgentManagedEntity = em.find(Agent.class, IdAgent);
+		Account AccountManagedEntity = em.find(Account.class, IdAccount);
+		AccountManagedEntity.setIsclosed(true);
+		System.out.println("out of AffectAgentToCloseAccount: Account: "+ IdAccount+" Agent: "+IdAgent);
+		AccountManagedEntity.setAgentCloseAccount(AgentManagedEntity);
+		
 	}
 	
 

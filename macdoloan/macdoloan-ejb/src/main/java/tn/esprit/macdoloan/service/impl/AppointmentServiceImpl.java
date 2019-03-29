@@ -8,12 +8,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import tn.esprit.macdoloan.entity.Account;
 import tn.esprit.macdoloan.entity.Agent;
 import tn.esprit.macdoloan.entity.Appointment;
+import tn.esprit.macdoloan.entity.Branch;
 import tn.esprit.macdoloan.entity.Client;
 import tn.esprit.macdoloan.service.interf.IAppointmentServiceLocal;
 import tn.esprit.macdoloan.service.interf.IAppointmentServiceRemote;
+
 
 @Stateless
 public class AppointmentServiceImpl implements IAppointmentServiceLocal, IAppointmentServiceRemote {
@@ -24,6 +25,7 @@ public class AppointmentServiceImpl implements IAppointmentServiceLocal, IAppoin
 	@Override
 	public int addAppointment(Appointment appointment) {
 		System.out.println("In addAppointment : ");
+		appointment.setStatus(false);
 		em.persist(appointment);
 		System.out.println("Out of addAppointment" + appointment.getId());
 		return appointment.getId();
@@ -58,8 +60,12 @@ public class AppointmentServiceImpl implements IAppointmentServiceLocal, IAppoin
 	public List<Appointment> findAllAppointments() {
 		System.out.println("In findAllAppointments : ");
 		List<Appointment> appointments = em.createQuery("from Appointment", Appointment.class).getResultList();
+		List<Appointment> undonAppointments=new ArrayList<>();
+		for (int i=0;i<appointments.size();i++){
+			if (appointments.get(i).isStatus()==false && appointments.get(i).getAgent()==null){ undonAppointments.add(appointments.get(i));}
+		}
 		System.out.println("Out of findAllAppointments : ");
-		return appointments;
+		return undonAppointments;
 	}
 
 	@Override
@@ -103,15 +109,36 @@ public class AppointmentServiceImpl implements IAppointmentServiceLocal, IAppoin
 		System.out.println("Out of findAppointmentByAgent : ");
 		TypedQuery<Appointment> appointments = em.createQuery("select a from Appointment a WHERE a.agent=:ag", Appointment.class);
 		appointments.setParameter("ag", ag);
+		List<Appointment> undonAppointments=new ArrayList<>();
+		for (int i=0;i<appointments.getResultList().size();i++){
+			if (appointments.getResultList().get(i).isStatus()==false){ undonAppointments.add(appointments.getResultList().get(i));}
+		}
 		System.out.println("Out of findAppointmentByAgent : ");
-		return appointments.getResultList();
+		return undonAppointments;
 	}
 
 	@Override
 	public void AffectAppointmentToAgent(int IdAppointment, int IdAgent) {
 		Agent AgentManagedEntity = em.find(Agent.class, IdAgent);
 		Appointment AppointmentManagedEntity = em.find(Appointment.class, IdAppointment);
+		System.out.println("out of AffectAppointmentToAgent: App: "+ IdAppointment+" Agent: "+IdAgent);
 		AppointmentManagedEntity.setAgent(AgentManagedEntity);
+	}
+	
+	@Override
+	public void AffectAppointmentToClient(int IdAppointment, int IdClient) {
+		Client ClientManagedEntity = em.find(Client.class, IdClient);
+		Appointment AppointmentManagedEntity = em.find(Appointment.class, IdAppointment);
+		System.out.println("out of AffectAppointmentToClient: App: "+ IdAppointment+" Client: "+IdClient);
+		AppointmentManagedEntity.setClient(ClientManagedEntity);
+	}
+	
+	@Override
+	public void AffectAppointmentToBranch(int IdAppointment, int IdBranch) {
+		Branch BranchManagedEntity = em.find(Branch.class, IdBranch);
+		Appointment AppointmentManagedEntity = em.find(Appointment.class, IdAppointment);
+		System.out.println("out of AffectAppointmentToBranch: App: "+ IdAppointment+" Branch: "+IdBranch);
+		AppointmentManagedEntity.setBranch(BranchManagedEntity);
 	}
 
 	@Override
@@ -158,6 +185,26 @@ public class AppointmentServiceImpl implements IAppointmentServiceLocal, IAppoin
 	public int addAgent(Agent agent) {
 		em.persist(agent);
 		return agent.getId();
+	}
+
+	@Override
+	public List<Appointment> findAppointmentByGover(String Gov) {
+		List<Appointment> appointments = em.createQuery("from Appointment", Appointment.class).getResultList();
+		List<Appointment> undonAppointments=new ArrayList<>();
+		for (int i=0;i<appointments.size();i++){
+			if (appointments.get(i).isStatus()==false && appointments.get(i).getAgent()==null){ undonAppointments.add(appointments.get(i));}
+		}
+		System.out.println("Out of findAllAppointments findAppointmentByGover : "+undonAppointments.size());
+		List<Appointment> appointmentsFound=new ArrayList<>();
+		if (Gov.equals("")){appointmentsFound=undonAppointments;}
+		else{
+		for (int i=0;i<undonAppointments.size();i++){
+			if (undonAppointments.get(i).getGovernorate().name().equals(Gov)){ appointmentsFound.add(undonAppointments.get(i));}
+			else if (undonAppointments.get(i).getGovernorate().name().equals(Gov))
+			System.out.println("Out of EVERY GOV NAME : "+undonAppointments.get(i).getGovernorate().name());
+		}}
+		System.out.println("Out of findAppointmentByGover : "+ appointmentsFound.size());
+		return appointmentsFound;
 	}
 
 }

@@ -20,6 +20,8 @@ public interface IAppointmentServiceRemote {
 	public void updateAppointmentStatus(Appointment appointment);
 
 	public Appointment findAppointmentById(int id);
+	
+	public List<Appointment> findAppointmentByGover(String Gov);
 
 	public List<Appointment> findAllAppointments();
 	
@@ -34,6 +36,10 @@ public interface IAppointmentServiceRemote {
 	public List<Appointment> findAppointmentByAgent(Agent ag);
 	
 	public void AffectAppointmentToAgent(int IdAppointment, int IdAgent);
+	
+	public void AffectAppointmentToClient(int IdAppointment, int IdClient);
+	
+	public void AffectAppointmentToBranch(int IdAppointment, int IdBranch);
 	
 	public int addClient(Client client);
 	

@@ -31,6 +31,10 @@ public interface IAccountServiceRemote {
 	
 	public void AffectAccountToClient(int IdAccount, int IdClient);
 	
+	void AffectAgentToOppenAccount(int IdAccount, int IdAgent);
+	
+	void AffectAgentToCloseAccount(int IdAccount, int IdAgent);
+	
 	public int addClient(Client client);
 	
 	public Client findClientByCin(String cin);

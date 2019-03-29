@@ -29,6 +29,10 @@ public interface IAccountServiceLocal {
 	
 	public List<Account> findAccountsByClient(Client cl);
 
+	void AffectAgentToOppenAccount(int IdAccount, int IdAgent);
+	
+	void AffectAgentToCloseAccount(int IdAccount, int IdAgent);
+	
 	void AffectAccountToClient(int IdAccount, int IdClient);
 	
 	public int addClient(Client client);

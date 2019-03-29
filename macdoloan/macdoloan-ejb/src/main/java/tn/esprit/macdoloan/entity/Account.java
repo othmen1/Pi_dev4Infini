@@ -15,14 +15,16 @@ import javax.persistence.*;
 @Table(name = "Account")
 public class Account implements Serializable {
 	@ManyToOne
-	Client client ;
+	Client client;
 	@ManyToOne
-	Agent agent ;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="account")
+	Agent agentOppenAccount;
+	@ManyToOne
+	Agent agentCloseAccount;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
 	private Set<Withdrawal> accountWithdrawals;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="account")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
 	private Set<Deposit> accountDeposits;
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -38,58 +40,82 @@ public class Account implements Serializable {
 	@Column(name = "OpeningDate")
 	@Temporal(TemporalType.DATE)
 	private Date OpeningDate;
-	@Column(name="IsClosed")
+	@Column(name = "IsClosed")
 	private boolean isclosed;
-	
-	public boolean isClosed() {
-		return isclosed;
-	}
-	public void setClosed(boolean closed) {
-		this.isclosed = closed;
-	}
+
 	public Client getClient() {
 		return client;
 	}
+
 	public void setClient(Client client) {
 		this.client = client;
 	}
+
 	public int getId() {
 		return Id;
 	}
+
 	public void setId(int id) {
 		Id = id;
 	}
+
 	public float getBalance() {
 		return balance;
 	}
+
 	public void setBalance(float balance) {
 		this.balance = balance;
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
+
 	public String getRIB() {
 		return RIB;
 	}
+
+	// rIB DOIT CONTENIR 13 DIGIT
 	public void setRIB(String rIB) {
-		RIB = rIB;
+		RIB = "TN59 10 006 " + rIB + " 31";
 	}
+
 	public Date getOpeningDate() {
 		return OpeningDate;
 	}
+
 	public void setOpeningDate(Date openingDate) {
 		OpeningDate = openingDate;
 	}
-	public Agent getAgent() {
-		return agent;
+
+	public Agent getAgentOppenAccount() {
+		return agentOppenAccount;
 	}
-	public void setAgent(Agent agent) {
-		this.agent = agent;
+
+	public void setAgentOppenAccount(Agent agentOppenAccount) {
+		this.agentOppenAccount = agentOppenAccount;
+	}
+
+	public Agent getAgentCloseAccount() {
+		return agentCloseAccount;
+	}
+
+	public void setAgentCloseAccount(Agent agentCloseAccount) {
+		this.agentCloseAccount = agentCloseAccount;
+	}
+
+	public boolean isIsclosed() {
+		return isclosed;
+	}
+
+	public void setIsclosed(boolean isclosed) {
+		this.isclosed = isclosed;
 	}
 	
 	
-   
+
 }

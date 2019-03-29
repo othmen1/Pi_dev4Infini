@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,8 +32,8 @@ public class Appointment implements Serializable {
 
 	   
 	@Id
-	@Column(name="id")
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="Id")
 	private int id;
 	@Column(name= "object")
 	private String object;
@@ -40,6 +42,7 @@ public class Appointment implements Serializable {
 	@Column(name="appointment_date")
 	@Temporal(TemporalType.DATE)
 	private Date date;
+	@Enumerated(EnumType.STRING)
 	@Column(name="governorate")
 	private Governorate governorate;
 	@Column(name= "city" )

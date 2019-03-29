@@ -2,10 +2,13 @@ package tn.esprit.macdoloan.service.interf;
 
 import java.util.List;
 
+import javax.ejb.Local;
+
 import tn.esprit.macdoloan.entity.Agent;
 import tn.esprit.macdoloan.entity.Appointment;
 import tn.esprit.macdoloan.entity.Client;
 
+@Local
 public interface IAppointmentServiceLocal {
 	
 	public int addAppointment(Appointment appointment);
@@ -31,6 +34,10 @@ public interface IAppointmentServiceLocal {
 	public List<Appointment> findAppointmentByAgent(Agent ag);
 	
 	public void AffectAppointmentToAgent(int IdAppointment, int IdAgent);
+	
+	public void AffectAppointmentToClient(int IdAppointment, int IdClient);
+	
+	public void AffectAppointmentToBranch(int IdAppointment, int IdBranch);
 	
 	public int addClient(Client client);
 	
