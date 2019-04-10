@@ -26,6 +26,10 @@ public class Withdrawal implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date WithdrawalDate;
 
+	public Withdrawal() {
+		super();
+	}
+
 	public Account getAccount() {
 		return account;
 	}
@@ -50,8 +54,19 @@ public class Withdrawal implements Serializable {
 		Amount = amount;
 	}
 
-	public Withdrawal() {
-		super();
+	public Date getWithdrawalDate() {
+		return WithdrawalDate;
 	}
+
+	public void setWithdrawalDate(Date withdrawalDate) {
+		WithdrawalDate = withdrawalDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Withdrawal [account=" + account + ", Id=" + Id + ", Amount=" + Amount + ", WithdrawalDate="
+				+ WithdrawalDate + "]";
+	}
+	
 
 }

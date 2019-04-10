@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import tn.esprit.macdoloan.entity.Account;
+import tn.esprit.macdoloan.entity.Agent;
 import tn.esprit.macdoloan.entity.Client;
 import tn.esprit.macdoloan.entity.User;
 
@@ -20,6 +21,8 @@ public interface IAccountServiceLocal {
 	public Account findAccountById(int id);
 
 	public List<Account> findAllAccounts();
+	
+	public List<Account> findAllAccountsAdmin();
 	
 	public List<String> getCinClients();
 	
@@ -40,5 +43,8 @@ public interface IAccountServiceLocal {
 	public Client findClientByCin(String cin);
 	
 	public Client findClientById(int id);
+	
+	public Agent findAgentById(int id);
+	
 
 }

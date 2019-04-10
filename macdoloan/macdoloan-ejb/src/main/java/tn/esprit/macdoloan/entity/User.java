@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "User")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class User implements Serializable {
+public class User implements Serializable {
 	@ManyToOne
 	Branch branch ;
 	
@@ -43,6 +43,8 @@ public abstract class User implements Serializable {
 	String cin;
 	@Column(name="BirthDate")
 	Date BirthDate;
+	@Column(name = "Role")
+	String Role;
 
 	public Date getBirthDate() {
 		return BirthDate;
@@ -138,5 +140,14 @@ public abstract class User implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public String getRole() {
+		return Role;
+	}
+
+	public void setRole(String role) {
+		Role = role;
+	}
+	
 
 }

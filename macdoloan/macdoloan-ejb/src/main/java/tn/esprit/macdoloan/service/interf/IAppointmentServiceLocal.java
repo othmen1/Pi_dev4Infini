@@ -23,6 +23,8 @@ public interface IAppointmentServiceLocal {
 
 	public List<Appointment> findAllAppointments();
 	
+	public List<Appointment> findAllAppointmentsAdmin();
+	
 	public List<String> getCinClients();
 	
 	public List<Client> getAllClients();

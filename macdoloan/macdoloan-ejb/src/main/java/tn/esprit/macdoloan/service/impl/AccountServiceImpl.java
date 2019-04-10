@@ -1,5 +1,4 @@
 package tn.esprit.macdoloan.service.impl;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,6 +68,14 @@ public class AccountServiceImpl implements IAccountServiceLocal, IAccountService
 		}
 		System.out.println("Out of findAllAccounts : ");
 		return oppenedAccounts;
+	}
+	
+	@Override
+	public List<Account> findAllAccountsAdmin() {
+		System.out.println("In findAllAccountsAdmin : ");
+		List<Account> accounts = em.createQuery("from Account", Account.class).getResultList();
+		System.out.println("Out of findAllAccountsAdmin : ");
+		return accounts;
 	}
 
 	@Override
@@ -141,6 +148,12 @@ public class AccountServiceImpl implements IAccountServiceLocal, IAccountService
 		Client client = em.find(Client.class, id);
 		return client;
 	}
+	
+	@Override
+	public Agent findAgentById(int id) {
+		Agent agent = em.find(Agent.class, id);
+		return agent;
+	}
 
 	@Override
 	public void AffectAgentToOppenAccount(int IdAccount, int IdAgent) {
@@ -160,7 +173,5 @@ public class AccountServiceImpl implements IAccountServiceLocal, IAccountService
 		AccountManagedEntity.setAgentCloseAccount(AgentManagedEntity);
 		
 	}
-	
-
 
 }

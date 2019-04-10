@@ -67,6 +67,13 @@ public class AppointmentServiceImpl implements IAppointmentServiceLocal, IAppoin
 		System.out.println("Out of findAllAppointments : ");
 		return undonAppointments;
 	}
+	
+	@Override
+	public List<Appointment> findAllAppointmentsAdmin() {
+		System.out.println("In findAllAppointmentsAdmin : ");
+		List<Appointment> appointments = em.createQuery("from Appointment", Appointment.class).getResultList();
+		return appointments;
+	}
 
 	@Override
 	public List<String> getCinClients() {
