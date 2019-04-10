@@ -123,4 +123,13 @@ public abstract class User implements Serializable {
 		return serialVersionUID;
 	}
 
+	public Branch getBranch() {
+		return branch;
+	}
+
+	public void setBranch(Branch branch) {
+		this.branch = branch;
+	}
+
+
 }

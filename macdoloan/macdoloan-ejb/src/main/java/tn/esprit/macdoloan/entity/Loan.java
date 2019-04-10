@@ -1,6 +1,7 @@
 package tn.esprit.macdoloan.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -20,6 +21,9 @@ public class Loan implements Serializable {
 	Client client ;
 	@ManyToOne
 	Product product ;
+	private Date startDate ;
+	private Date endDate ;
+	private double amount ;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="loan")
 	private Set<Installment> accountInstallments;
 
@@ -28,6 +32,50 @@ public class Loan implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id")
 	int id;
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public Date getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+	public Set<Installment> getAccountInstallments() {
+		return accountInstallments;
+	}
+	public void setAccountInstallments(Set<Installment> accountInstallments) {
+		this.accountInstallments = accountInstallments;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public double getAmount() {
+		return amount;
+	}
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
 	
 
+	
+	
 }

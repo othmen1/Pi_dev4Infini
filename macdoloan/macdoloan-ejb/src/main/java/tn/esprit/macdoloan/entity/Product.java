@@ -35,6 +35,69 @@ public class Product implements Serializable {
 	float fees;
 	@Column(name = "DurationMax")
 	int durationMax;
+	public Set<Loan> getProductLoans() {
+		return productLoans;
+	}
+	public void setProductLoans(Set<Loan> productLoans) {
+		this.productLoans = productLoans;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAmountMax() {
+		return amountMax;
+	}
+	public void setAmountMax(int amountMax) {
+		this.amountMax = amountMax;
+	}
+	public int getAmountMin() {
+		return amountMin;
+	}
+	public void setAmountMin(int amountMin) {
+		this.amountMin = amountMin;
+	}
+	public float getInterestRate() {
+		return interestRate;
+	}
+	public void setInterestRate(float interestRate) {
+		this.interestRate = interestRate;
+	}
+	public float getFees() {
+		return fees;
+	}
+	public void setFees(float fees) {
+		this.fees = fees;
+	}
+	public int getDurationMax() {
+		return durationMax;
+	}
+	public void setDurationMax(int durationMax) {
+		this.durationMax = durationMax;
+	}
+	public int getDurationMin() {
+		return durationMin;
+	}
+	public void setDurationMin(int durationMin) {
+		this.durationMin = durationMin;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	@Column(name = "DurationMin")
 	int durationMin;
 	@Column(name = "Description")

@@ -18,6 +18,16 @@ public class Claim implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id")
 	private int Id;
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Column(name = "Object")
 	private String Object;
 	@Column(name = "Description")

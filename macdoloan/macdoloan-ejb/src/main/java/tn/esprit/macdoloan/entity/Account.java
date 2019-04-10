@@ -33,5 +33,44 @@ public class Account implements Serializable {
 	public Account() {
 		super();
 	}
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	public Set<Withdrawal> getAccountWithdrawals() {
+		return accountWithdrawals;
+	}
+	public void setAccountWithdrawals(Set<Withdrawal> accountWithdrawals) {
+		this.accountWithdrawals = accountWithdrawals;
+	}
+	public Set<Deposit> getAccountDeposits() {
+		return accountDeposits;
+	}
+	public void setAccountDeposits(Set<Deposit> accountDeposits) {
+		this.accountDeposits = accountDeposits;
+	}
+	public int getId() {
+		return Id;
+	}
+	public void setId(int id) {
+		Id = id;
+	}
+	public float getBalance() {
+		return balance;
+	}
+	public void setBalance(float balance) {
+		this.balance = balance;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
    
 }
