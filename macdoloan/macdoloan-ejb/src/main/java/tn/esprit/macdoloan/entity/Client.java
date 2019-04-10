@@ -17,7 +17,7 @@ public class Client extends User implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="client")
 	private Set<Account> clientAccounts;
 	private static final long serialVersionUID = 1L;
-	
+
 	@Column(name="Salary")
 	private float Salary;
 	@Column(name="Job")
@@ -26,8 +26,10 @@ public class Client extends User implements Serializable{
 	private int nbrchild;
 	@Column(name="SocialStatus")
 	private String status;
+
 	@Column(name="domain")
 	private DomainType Domain;
+
 	public float getSalary() {
 		return Salary;
 	}
@@ -82,6 +84,6 @@ public class Client extends User implements Serializable{
 	public void setDomain(DomainType domain) {
 		Domain = domain;
 	}
-	
+
 
 }

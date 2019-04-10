@@ -3,9 +3,11 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
         <dependent-module archiveName="macdoloan-web.war" deploy-path="/" handle="module:/resource/macdoloan-web/macdoloan-web">
+            <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="macdoloan-ejb.jar" deploy-path="/" handle="module:/resource/macdoloan-ejb/macdoloan-ejb">
+            <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
     </wb-module>
