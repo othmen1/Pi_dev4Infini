@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Branch")
 public class Branch implements Serializable {
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="branch")
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy="branch")
 	private Set<User> branchUsers;
 	
 	   
@@ -21,14 +21,18 @@ public class Branch implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id")
 	private int Id;
-	@Column(name = "Lat")
-	private long lat;
-	@Column(name = "Lng")
-	private long lng;
-	@Column(name = "Adress")
-	private String adress;
+	@Column(name = "Street")
+	private String street;
+	@Column(name = "PostalCode")
+	private String postalCode;
+	@Column(name = "City")
+	private String city;
 	@Column(name = "Name")
 	private String name;
+	@Enumerated(EnumType.STRING)
+	@Column(name="Governorate")
+	private Governorate governorate;
+	
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -43,27 +47,6 @@ public class Branch implements Serializable {
 	public void setId(int Id) {
 		this.Id = Id;
 	}   
-	public long getLat() {
-		return this.lat;
-	}
-
-	public void setLat(long lat) {
-		this.lat = lat;
-	}   
-	public long getLng() {
-		return this.lng;
-	}
-
-	public void setLng(long lng) {
-		this.lng = lng;
-	}   
-	public String getAdress() {
-		return this.adress;
-	}
-
-	public void setAdress(String adress) {
-		this.adress = adress;
-	}   
 	public String getName() {
 		return this.name;
 	}
@@ -71,5 +54,37 @@ public class Branch implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-   
+	
+	public String getStreet() {
+		return street;
+	}
+	public void setStreet(String street) {
+		this.street = street;
+	}
+	public String getPostalCode() {
+		return postalCode;
+	}
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public Set<User> getBranchUsers() {
+		return branchUsers;
+	}
+	public void setBranchUsers(Set<User> branchUsers) {
+		this.branchUsers = branchUsers;
+	}
+	public Governorate getGovernorate() {
+		return governorate;
+	}
+	public void setGovernorate(Governorate governorate) {
+		this.governorate = governorate;
+	}
+	
+	
 }

@@ -1,6 +1,7 @@
 package tn.esprit.macdoloan.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,12 +16,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "User")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class User implements Serializable {
+public class User implements Serializable {
 	@ManyToOne
 	Branch branch ;
 	
-	
-
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,8 +39,20 @@ public abstract class User implements Serializable {
 	String login;
 	@Column(name = "Password")
 	String password;
-	@Column(name = "Cin")
+	@Column(name = "Cin",unique=true)
 	String cin;
+	@Column(name="BirthDate")
+	Date BirthDate;
+	@Column(name = "Role")
+	String Role;
+
+	public Date getBirthDate() {
+		return BirthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		BirthDate = birthDate;
+	}
 
 	public User() {
 
@@ -110,19 +121,6 @@ public abstract class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getCin() {
-		return cin;
-	}
-
-	public void setCin(String cin) {
-		this.cin = cin;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public Branch getBranch() {
 		return branch;
 	}
@@ -131,5 +129,25 @@ public abstract class User implements Serializable {
 		this.branch = branch;
 	}
 
+	public String getCin() {
+		return cin;
+	}
+
+	public void setCin(String cin){
+		this.cin = cin;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public String getRole() {
+		return Role;
+	}
+
+	public void setRole(String role) {
+		Role = role;
+	}
+	
 
 }

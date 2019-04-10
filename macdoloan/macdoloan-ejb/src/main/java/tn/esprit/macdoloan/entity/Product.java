@@ -35,6 +35,10 @@ public class Product implements Serializable {
 	float fees;
 	@Column(name = "DurationMax")
 	int durationMax;
+	@Column(name = "DurationMin")
+	int durationMin;
+	@Column(name = "Description")
+	String description;
 	public Set<Loan> getProductLoans() {
 		return productLoans;
 	}
@@ -95,13 +99,8 @@ public class Product implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	@Column(name = "DurationMin")
-	int durationMin;
-	@Column(name = "Description")
-	String description;
+	
+	
 	
 
 }
