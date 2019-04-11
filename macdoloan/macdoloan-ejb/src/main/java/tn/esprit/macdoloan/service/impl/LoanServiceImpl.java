@@ -91,6 +91,7 @@ public class LoanServiceImpl implements ILoanServiceLocal, ILoanServiceRemote {
 		System.out.println("In addDeposit : ");
 		em.persist(installment);
 		System.out.println("Out of AddDeposit" + installment.getId());
+		installment.setVerif(false);
 		return installment.getId();
 	}
 	
